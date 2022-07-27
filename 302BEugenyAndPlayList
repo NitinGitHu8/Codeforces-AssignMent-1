@@ -1,0 +1,49 @@
+//https://codeforces.com/problemset/problem/302/B
+import java.util.*;
+public class Main {
+
+     
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int song_for_how_many_minutes[] = new int[n + 1];
+        int m = sc.nextInt();
+        //int t[] = new int[n + 1];
+        //int c[] = new int[n + 1];
+        int sum=0;
+        for(int i = 1; i<=n; i++){
+            int ci = sc.nextInt();
+            int ti = sc.nextInt();
+            song_for_how_many_minutes[i] = ci * ti;
+            sum+=song_for_how_many_minutes[i];
+            song_for_how_many_minutes[i]=sum;
+        }
+        int time_stamp[] = new int[m];
+        for(int i = 0; i<m; i++){
+            time_stamp[i] = sc.nextInt();
+        }
+        
+       // for(int i = 1; i<=n; i++){
+            
+        //}
+        //for(int i = 2; i<=n; i++){
+         //   song_for_how_many_minutes[i] += song_for_how_many_minutes[i - 1];
+        //}
+        for(int i = 0; i<m; i++){
+            int target = time_stamp[i];
+            int s = 1;
+            int e = song_for_how_many_minutes.length;
+            int ans = -1;
+            while(s <= e){
+                int mid = (s + e)/2;
+                if(song_for_how_many_minutes[mid] >= target){
+                    ans = mid;
+                    e = mid - 1;
+                }else{
+                    s = mid + 1;
+                }
+            }
+            System.out.println(ans); 
+        }
+    }
+}
