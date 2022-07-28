@@ -1,0 +1,62 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String args[]) {
+		// Your code goes here
+		int n;
+		Scanner s=new Scanner(System.in);
+		n=s.nextInt();
+		String beg="";
+		String mid="";
+		String end="";
+		String str;
+		int cnt=0;
+		
+		for(int i=0;i<n;i++){
+			str=s.next();
+			int count[]=new int[26];
+			for(int j=0;j<str.length();j++){
+				count[str.charAt(j)-'a']++;
+				
+				
+			}
+			if(count['s'-'a']==0){
+				end=end+str;
+			}
+			else if(count['h'-'a']==0){
+				beg=str+beg;
+			}
+			else if(count['s'-'a']>count['h'-'a']){
+				beg=beg+str;
+			}
+			else if(count['h'-'a']>count['s'-'a']){
+				end=str+end;
+			}
+			else {
+				mid=mid+str;
+			}
+			cnt+=count['h'-'a'];
+			
+		}
+		/*nt cnt=0;
+		String res=beg+mid+end;
+		for(int i=0;i<res.length();i++){
+			if(res.charAt(i)=='h'){
+				cnt++;
+			}
+		}*/
+		String res=beg+mid+end;
+		int i=0;
+		int sum=0;
+		while(i<res.length()){
+			if(res.charAt(i)=='s'){
+				sum+=cnt;
+			}
+			else{
+				cnt--;
+			}
+			i++;
+		}
+		System.out.print(sum);
+		
+	}
+}
